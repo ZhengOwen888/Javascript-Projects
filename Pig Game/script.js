@@ -1,5 +1,6 @@
 "use strict";
 
+// Get property value
 const player0Element = document.querySelector(".player--0");
 const player1Element = document.querySelector(".player--1");
 const score0Element = document.getElementById("score--0");
@@ -17,10 +18,10 @@ score0Element.textContent = 0;
 score1Element.textContent = 0;
 diceElement.classList.add("hidden");
 
-const winScore = 20;
-let scores, currentScore, activePlayer, playing;
+const winScore = 20; 
+let scores, currentScore, activePlayer, playing; // global variables
 
-// Initialize function
+// Starting condition
 const init = function () {
     scores = [0, 0];
     currentScore = 0;
@@ -39,7 +40,8 @@ const init = function () {
     current1Element.textContent = 0;
 };
 
-init(); // initialize the game
+// Initialize the game
+init();
 
 const switchPlayer = function () {
     currentScore = 0;
@@ -49,7 +51,7 @@ const switchPlayer = function () {
     player1Element.classList.toggle("player--active");
 };
 
-// Rolling dice
+// Roll dice
 btnRoll.addEventListener("click", function () {
     if (playing) {
         // Generate a random dice roll
@@ -71,6 +73,7 @@ btnRoll.addEventListener("click", function () {
     }
 });
 
+// Hold points
 btnHold.addEventListener("click", function () {
     if (playing) {
         // Add current score to active player's score
@@ -81,6 +84,7 @@ btnHold.addEventListener("click", function () {
 
         // Check if score reached winning score
         if (scores[activePlayer] >= winScore) {
+            // End game
             playing = false;
             diceElement.classList.add("hidden");
             document
@@ -96,5 +100,5 @@ btnHold.addEventListener("click", function () {
     }
 });
 
-// Reset the game
+// New game
 btnNew.addEventListener("click", init);
